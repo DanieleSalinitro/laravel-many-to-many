@@ -5,7 +5,6 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-
 class UpdateProjectRequest extends FormRequest
 {
     /**
@@ -31,7 +30,10 @@ class UpdateProjectRequest extends FormRequest
                 Rule::unique('projects')->ignore($this->project->id),
             ],
             'content' => 'nullable',
-            'image' => 'nullable|image|max:2048'
+            'image' => 'nullable|image|max:2048',
+            'type_id' => 'nullable|exists:types,id',
+            'technologies' => 'array',
+            'technologies.*' => 'exists:technologies,id',
         ];
     }
 
@@ -39,10 +41,13 @@ class UpdateProjectRequest extends FormRequest
     {
         return [
             'title.required' => 'Il titolo è obbligatorio!',
-            'title.unique:projects' => 'Questo titolo esiste già!',
+            'title.unique' => 'Questo titolo esiste già!',
             'title.max' => 'Il titolo deve essere lungo massimo :max caratteri!',
             'title.min' => 'Il titolo deve essere lungo almeno :min caratteri!',
-            'image.max' => 'Il file immagine deve essere di massimo :max kilobytes!'
+            'image.max' => 'Il file immagine deve essere di massimo :max kilobytes!',
+            'type_id.exists' => 'La tipologia selezionata non è valida!',
+            'technologies.array' => 'Le tecnologie devono essere un array!',
+            'technologies.*.exists' => 'Una delle tecnologie selezionate non è valida!',
         ];
     }
 }

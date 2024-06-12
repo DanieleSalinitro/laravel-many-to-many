@@ -24,7 +24,7 @@
             @enderror
         </div>
         <div class="mb-3">
-            <label for="image" class="form-label">Project Image</label>
+            <label for="image" class="form-label">Immagine Progetto</label>
             <input type="file" class="form-control @error('image') is-invalid @enderror" id="image" name="image">
             @error('image')
                 <div class="alert alert-danger">{{ $message }}</div>
@@ -39,6 +39,17 @@
                 @endforeach
             </select>
             @error('type_id')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
+        </div>
+        <div class="mb-3">
+            <label for="technologies" class="form-label">Tecnologie</label>
+            <select multiple class="form-control @error('technologies') is-invalid @enderror" id="technologies" name="technologies[]">
+                @foreach($technologies as $technology)
+                    <option value="{{ $technology->id }}" {{ in_array($technology->id, old('technologies', [])) ? 'selected' : '' }}>{{ $technology->name }}</option>
+                @endforeach
+            </select>
+            @error('technologies')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
         </div>

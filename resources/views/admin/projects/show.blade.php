@@ -11,6 +11,17 @@
             <img src="{{ asset('storage/' . $project->image) }}" alt="{{ $project->title }}" class="img-fluid">
         </div>
     @endif
+    @if($project->type)
+        <p><strong>Tipologia:</strong> {{ $project->type->name }}</p>
+    @endif
     <p>{{ $project->content }}</p>
+    @if($project->technologies->count())
+        <h5>Tecnologie utilizzate:</h5>
+        <ul>
+            @foreach($project->technologies as $technology)
+                <li>{{ $technology->name }}</li>
+            @endforeach
+        </ul>
+    @endif
 </section>
 @endsection
