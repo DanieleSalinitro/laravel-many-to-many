@@ -15,6 +15,7 @@
               <th scope="col">Titolo</th>
               <th scope="col">Contenuto</th>
               <th scope="col">Tipologia</th>
+              <th scope="col">Tecnologie</th>
               <th scope="col">Creato il</th>
               <th scope="col">Aggiornato il</th>
               <th scope="col">Azioni</th>
@@ -27,6 +28,9 @@
                 <td>{{$project->title}}</td>
                 <td>{{$project->slug}}</td>
                 <td>{{ $project->type ? $project->type->name : 'Nessun tipo' }}</td>
+                <td>
+                    {{ $project->technologies ? $project->technologies->pluck('name')->implode(', ') : 'Nessuna tecnologia' }}
+                </td>
                 <td>{{$project->created_at}}</td>
                 <td>{{$project->updated_at}}</td>
                 <td>

@@ -13,22 +13,17 @@ class TechnologySeeder extends Seeder
      */
     public function run(): void
     {
-        $technologies = [
-            ['name' => 'Laravel'],
-            ['name' => 'PHP'],
-            ['name' => 'JavaScript'],
-            ['name' => 'Vue.js'],
-            ['name' => 'Angular'],
-            ['name' => 'React'],
-            ['name' => 'Flutter'],
-            ['name' => 'Django'],
-            ['name' => 'Ruby'],
-            ['name' => 'Python'],
-            ['name' => 'Java'],
-        ];
-
-        foreach ($technologies as $technology) {
-            Technology::create($technology);
-        }
+        Technology::create(['name' => 'Laravel']);
+        Technology::create(['name' => 'PHP']);
+        Technology::create(['name' => 'JavaScript']);
+        Technology::create(['name' => 'Vue.js']);
+        Technology::create(['name' => 'Angular']);
+        Technology::create(['name' => 'React']);
+        Technology::create(['name' => 'Flutter']);
+        Technology::create(['name' => 'Django']);
+        Technology::create(['name' => 'Ruby']);
+        Technology::create(['name' => 'Python']);
+        Technology::create(['name' => 'Java']);
+        
     }
 }
